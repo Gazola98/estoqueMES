@@ -1,18 +1,19 @@
 import 'reflect-metadata'
 import { DataSource } from "typeorm";
+import { Device } from './entity/Device'
 
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: "estoque",
+    host: "localhost",
     port: 3306,
     username: "root",
     password: "986715",
     database: "estoque",
     synchronize: true,
     logging: true,
-    entities: [],
+    entities: [Device],
     subscribers: [],
-    migrations: [],
+    migrations: [__dirname + "migrations/*.js"],
 })
 
 AppDataSource.initialize()
