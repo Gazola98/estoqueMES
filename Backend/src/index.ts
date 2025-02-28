@@ -5,6 +5,8 @@ const app = express();
 
 app.use(express.json())
 
+require("dotenv").config();
+
 app.get("/", (req: Request, res: Response) =>{
     res.send("Bem vindo ao menu!")
 })
