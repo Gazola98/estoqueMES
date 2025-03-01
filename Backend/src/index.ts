@@ -2,10 +2,14 @@ import express, {Request, Response} from "express";
 
 const app = express();
 
-
 app.use(express.json())
 
+const cors = require('cors');
+
+app.use(cors())
+
 require("dotenv").config();
+
 
 app.get("/", (req: Request, res: Response) =>{
     res.send("Bem vindo ao menu!")
