@@ -1,12 +1,13 @@
 import express, {Request, Response} from "express";
-
 const app = express();
 
 app.use(express.json())
 
 const cors = require('cors');
+const bodyParser = require('body-parser')
 
 app.use(cors())
+app.use(bodyParser.json());
 
 require("dotenv").config();
 
