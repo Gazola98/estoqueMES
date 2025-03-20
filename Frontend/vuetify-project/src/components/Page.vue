@@ -37,17 +37,91 @@
   
       <v-main>
         <v-container>
-          <h1>Teste</h1>
-          <v-table>
-          <thead>
-            <tr>
-               <td>Teste</td>
-            </tr>
-            <tr>
-              <td>Teste2</td>
-            </tr>
-          </thead>
-        </v-table>
+          <h1 class="mb-6">Teste</h1>
+
+          <v-card flat class="border mb-4">
+            <div class="d-flex justify-space-between">
+
+              <v-card-title>All Devices</v-card-title>
+
+              <v-card-title>
+                <v-btn @click ='isDialogOpen = true' variant="elevated" color="indigo-darken-4" class="mb-4">Add Device</v-btn>
+
+                <v-dialog v-model="isDialogOpen" width="600px">
+                  <v-card>
+                    <v-card-title class="mt-4">Register New Device</v-card-title>
+                    <v-card-text>
+                      <v-row>
+                        <v-col>
+                          <v-text-field label="NameDevice" variant="outlined"
+                          :rules="nameRules"></v-text-field>
+                        </v-col>
+                        
+                        <v-col>
+                          <v-text-field label="Amount" 
+                          variant="outlined"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      
+                      <v-select label="Shop"
+                      variant="outlined"
+                      :items="['ASSEMBLY', 'PAINT', 'BODY', 'PRESS', 'ENGINE']"></v-select>
+                    </v-card-text>
+
+                    <v-card-actions>
+                      <v-btn variant="text" @click="isDialogOpen = false">Cancel</v-btn>
+                      <v-btn variant="elevated" color="indigo-darken-4" class="ma-4">Salvar</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-card-title>
+            </div>
+          
+            <v-table>
+              <thead>
+                <tr class="text-h6">
+                  <th>Device</th>
+                  <th>Amount</th>
+                  <th>In Line</th>
+                  <th>Stock</th>
+                  <th>Shop</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>MESPC</td>
+                  <td>18</td>
+                  <td>14</td>
+                  <td>4</td>
+                  <th>ASSEMBLY</th>
+                  <td>
+                    <v-btn variant="tonal">Edit</v-btn>
+                  </td>
+                </tr>
+                <tr>
+                  <td>GPTIS</td>
+                  <td>12</td>
+                  <td>8</td>
+                  <td>4</td>
+                  <th>ASSEMBLY</th>
+                  <td>
+                    <v-btn variant="tonal">Edit</v-btn>
+                  </td>
+                </tr>
+                <tr>
+                  <td>OS&D</td>                  
+                  <td>10</td>                  
+                  <td>7</td>                  
+                  <td>3</td>
+                  <th>ASSEMBLY</th>     
+                  <td>
+                    <v-btn variant="tonal">Edit</v-btn>
+                  </td>             
+                </tr>
+              </tbody>
+            </v-table>
+          </v-card>
         </v-container>
         
       </v-main>
@@ -59,6 +133,19 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
+
+//validação formulário
+const nameRules = [
+  value => {
+    if(value) return true
+
+    return 'o nome é obrigatório'    
+  },
+]
+
+
+// Criando script para modal
+const isDialogOpen = ref(false)
 
 // criando referencia para o drawer
 const drawer = ref(null)
