@@ -10,6 +10,12 @@ import { registerPlugins } from '@/plugins'
 // Components
 import App from './App.vue'
 
+import vuetify from './plugins/vuetify'
+
+createApp(App)
+.use(vuetify)
+.mount('#app')
+
 // Composables
 import { createApp } from 'vue'
 
