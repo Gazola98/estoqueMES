@@ -12,9 +12,20 @@ import App from './App.vue'
 
 import vuetify from './plugins/vuetify'
 
-createApp(App)
-.use(vuetify)
-.mount('#app')
+// import router
+// import routes from './routes'
+
+// Vue.config.productionTip = false;
+
+// // instância do vue para passar o router
+// new Vue ({
+//     rendr: h => h(app),
+//     routes // registrar o router
+// }).$mount('#app');
+
+// createApp(App)
+// .use(vuetify)
+// .mount('#app')
 
 // Composables
 import { createApp } from 'vue'

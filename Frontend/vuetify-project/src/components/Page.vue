@@ -37,12 +37,12 @@
   
       <v-main>
         <v-container>
-          <h1 class="mb-6">Teste</h1>
+          <h1 class="ma-4">Teste</h1>
 
           <v-card flat class="border mb-4">
             <div class="d-flex justify-space-between">
 
-              <v-card-title>All Devices</v-card-title>
+              <v-card-title class="ma-2">All Devices</v-card-title>
 
               <v-card-title>
                 <v-btn @click ='isDialogOpen = true' variant="elevated" color="indigo-darken-4" class="mb-4">Add Device</v-btn>
@@ -58,8 +58,7 @@
                         </v-col>
                         
                         <v-col>
-                          <v-text-field label="Amount" 
-                          variant="outlined"></v-text-field>
+                          <v-select variant="outlined" label="System" :items="['MES']"></v-select>
                         </v-col>
                       </v-row>
                       
