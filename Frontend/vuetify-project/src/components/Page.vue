@@ -2,12 +2,13 @@
     <v-app id="inspire">
       <v-navigation-drawer v-model="drawer">
         <!-- navs -->
+         
         
         <v-list class="mt-6 ml-2 text-h6">
           <v-list-item class="navs" href="#" prepend-icon="mdi-home">Home</v-list-item>
           <v-list-item class="navs" href="#" prepend-icon="mdi-widgets">Devices</v-list-item>
-          <v-list-item class="navs" href="#" prepend-icon="mdi-plus">Add</v-list-item>
-          <v-list-item class="navs" href="#" prepend-icon="mdi-alert-circle">Logs</v-list-item>
+          <v-list-item class="navs" href="#" prepend-icon="mdi-plus">Teste</v-list-item>
+          <v-list-item class="navs" href="#" prepend-icon="mdi-alert-circle">Teste</v-list-item>
           <v-list-item class="navs" href="#" prepend-icon="mdi-account">Users</v-list-item>
         </v-list>
  
@@ -16,7 +17,6 @@
           prepend-icon="mdi-theme-dark-light"
           false-icon="mdi-weather-night"
           true-icon="mdi-weather-sunny"
-          label=""
           class="teste">
         </v-switch>
         
@@ -36,7 +36,31 @@
       </v-app-bar>
   
       <v-main>
-        
+        <v-table>
+          <thead>
+            <tr>
+              <th>System</th>
+              <th>Type</th>
+              <th>Brand</th>
+              <th>Model</th>
+              <th>IP Adress</th>
+              <th>MAC</th>
+              <th>Host</th>
+              <th>Shop</th>
+              <th>Station</th>
+              <th>O.S</th>
+              <th>SerialNumber</th>
+              <th>Install</th>
+              <th>Asset</th>
+              <th>Switch Port</th>
+              <th>Switch</th>
+              <th>Rack</th>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </thead>
+        </v-table>
       </v-main>
     </v-app>
 </template>
@@ -75,27 +99,6 @@ const toggleTheme = () => {
     theme.global.name.value = 'light'; // tema claro
   }
 };
-
-const search = ref('')
-const items = [
-  {
-    name: 'OSD',
-    image: '1.png',
-  }
-]
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 <style>
@@ -112,50 +115,7 @@ const items = [
 
 
 
-<!-- <v-table>
-  <thead>
-    <tr class="text-h6">
-      <th>Device</th>
-      <th>Amount</th>
-      <th>In Line</th>
-      <th>Stock</th>
-      <th>Shop</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>MESPC</td>
-      <td>18</td>
-      <td>14</td>
-      <td>4</td>
-      <th>ASSEMBLY</th>
-      <td>
-        <v-btn variant="tonal">Edit</v-btn>
-      </td>
-    </tr>
-    <tr>
-      <td>GPTIS</td>
-      <td>12</td>
-      <td>8</td>
-      <td>4</td>
-      <th>ASSEMBLY</th>
-      <td>
-        <v-btn variant="tonal">Edit</v-btn>
-      </td>
-    </tr>
-    <tr>
-      <td>OS&D</td>                  
-      <td>10</td>                  
-      <td>7</td>                  
-      <td>3</td>
-      <th>ASSEMBLY</th>     
-      <td>
-        <v-btn variant="tonal">Edit</v-btn>
-      </td>             
-    </tr>
-  </tbody>
-</v-table> -->
+
 
 <!-- <v-card-title>
   <v-btn @click ='isDialogOpen = true' variant="elevated" color="indigo-darken-4" class="mb-4">Add Device</v-btn>
