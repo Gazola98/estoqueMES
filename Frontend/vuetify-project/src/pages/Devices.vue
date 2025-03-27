@@ -11,7 +11,7 @@
           <v-list-item class="navs" href="#" prepend-icon="mdi-alert-circle">Teste</v-list-item>
           <v-list-item class="navs" href="#" prepend-icon="mdi-account">Users</v-list-item>
         </v-list>
- 
+
         <v-switch 
           @click="toggleTheme" 
           prepend-icon="mdi-theme-dark-light"
@@ -19,12 +19,11 @@
           true-icon="mdi-weather-sunny"
           class="teste">
         </v-switch>
-        
+
       </v-navigation-drawer>
 
       <!-- Menu com titulo -->
       <v-app-bar color="indigo-darken-4">
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
   
         <v-app-bar-title class="text-h5">MES Storage</v-app-bar-title>
         <template #append>
@@ -68,17 +67,9 @@
 
 <!-- Theme Page -->
 <script setup>
+
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-
-//validação formulário
-const nameRules = [
-  value => {
-    if(value) return true
-
-    return 'o nome é obrigatório'    
-  },
-]
 
 
 // Criando script para modal
@@ -89,16 +80,6 @@ const drawer = ref(null)
 
 //acessando o tema global
 const theme = useTheme()
-
-//Função para alternar entre tema claro e escuro
-const toggleTheme = () => {
-  const currentTheme = theme.global.name.value;
-  if (currentTheme === 'light') {
-    theme.global.name.value = 'dark';  // tema escuro
-  } else {
-    theme.global.name.value = 'light'; // tema claro
-  }
-};
 </script>
 
 <style>
