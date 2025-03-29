@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Devices from '../pages/Devices.vue'
 import Home from '../pages/master/Home.vue'
+import Devices from '../pages/Devices.vue'
+import Add from '../pages/Add.vue'
+import Log from '../pages/Log.vue'
 import Users from '../pages/Users.vue';
 
 const routes = [
@@ -12,12 +14,22 @@ const routes = [
         children: [
             {
                 path: '/devices',
-                name: 'devices',
+                name: 'Devices',
                 component: Devices,
             },
             {
+                path: '/add',
+                name: 'Add',
+                component: Add,
+            },
+            {
+                path: '/logs',
+                name: 'logs',
+                component: Log,
+            },
+            {
                 path: '/users',
-                name: 'users',
+                name: 'Users',
                 component: Users,
             },
         ]

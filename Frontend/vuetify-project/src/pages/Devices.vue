@@ -1,98 +1,41 @@
 <template>
-    <v-app id="inspire">
-      <v-navigation-drawer v-model="drawer">
-        <!-- navs -->
-         
-        
-        <v-list class="mt-6 ml-2 text-h6">
-          <v-list-item class="navs" href="#" prepend-icon="mdi-home">Home</v-list-item>
-          <v-list-item class="navs" href="#" prepend-icon="mdi-widgets">Devices</v-list-item>
-          <v-list-item class="navs" href="#" prepend-icon="mdi-plus">Teste</v-list-item>
-          <v-list-item class="navs" href="#" prepend-icon="mdi-alert-circle">Teste</v-list-item>
-          <v-list-item class="navs" href="#" prepend-icon="mdi-account">Users</v-list-item>
-        </v-list>
-
-        <v-switch 
-          @click="toggleTheme" 
-          prepend-icon="mdi-theme-dark-light"
-          false-icon="mdi-weather-night"
-          true-icon="mdi-weather-sunny"
-          class="teste">
-        </v-switch>
-
-      </v-navigation-drawer>
-
-      <!-- Menu com titulo -->
-      <v-app-bar color="indigo-darken-4">
-  
-        <v-app-bar-title class="text-h5">MES Storage</v-app-bar-title>
-        <template #append>
-          <v-avatar>
-            <v-img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"></v-img>
-          </v-avatar>
-          <v-btn size="large" class="pr-1" prepend-icon="mdi-exit-to-app"></v-btn>
-        </template>
-      </v-app-bar>
-  
-      <v-main>
-        <v-table>
-          <thead>
-            <tr>
-              <th>System</th>
-              <th>Type</th>
-              <th>Brand</th>
-              <th>Model</th>
-              <th>IP Adress</th>
-              <th>MAC</th>
-              <th>Host</th>
-              <th>Shop</th>
-              <th>Station</th>
-              <th>O.S</th>
-              <th>SerialNumber</th>
-              <th>Install</th>
-              <th>Asset</th>
-              <th>Switch Port</th>
-              <th>Switch</th>
-              <th>Rack</th>
-            </tr>
-            <tr>
-              <td></td>
-            </tr>
-          </thead>
-        </v-table>
-      </v-main>
-    </v-app>
+ <v-main>
+  <v-container>
+    <v-table>
+      <thead>
+        <tr>
+          <th>System</th>
+          <th>Type</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>IP Adress</th>
+          <th>MAC</th>
+          <th>Host</th>
+          <th>Shop</th>
+          <th>Station</th>
+          <th>O.S</th>
+          <th>SerialNumber</th>
+          <th>Install</th>
+          <th>Asset</th>
+          <th>Switch Port</th>
+          <th>Switch</th>
+          <th>Rack</th>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+      </thead>
+    </v-table>
+  </v-container>
+ </v-main>
 </template>
   
 
 <!-- Theme Page -->
 <script setup>
 
-import { ref } from 'vue';
-import { useTheme } from 'vuetify';
-
-
-// Criando script para modal
-const isDialogOpen = ref(false)
-
-// criando referencia para o drawer
-const drawer = ref(null)
-
-//acessando o tema global
-const theme = useTheme()
 </script>
 
-<style>
-  .navs {
-    margin-top: 4.6rem;
-  }
-
-  .teste {
-    margin-top: 12.5rem;
-    width: 0;
-    height: 0;
-  }
-</style>
 
 
 

@@ -5,20 +5,20 @@
          
         
         <v-list class="mt-6 ml-2 text-h6">
-          <router-link to="/">
-            <v-list-item class="navs" prepend-icon="mdi-home">Home</v-list-item>
+          <router-link to="/"  class="link">
+            <v-list-item prepend-icon="mdi-home">Home</v-list-item>
           </router-link>
-          <router-link to="/devices">
-            <v-list-item class="navs" prepend-icon="mdi-widgets">Devices</v-list-item>
+          <router-link to="/devices" class="link">
+            <v-list-item prepend-icon="mdi-widgets">Devices</v-list-item>
           </router-link>
-          <router-link to="">
-            <v-list-item class="navs" prepend-icon="mdi-plus">Teste</v-list-item>
+          <router-link to="/add" class="link">
+            <v-list-item prepend-icon="mdi-plus">Add</v-list-item>
           </router-link>
-          <router-link to="">
-            <v-list-item class="navs" prepend-icon="mdi-alert-circle">Teste</v-list-item>
+          <router-link to="/logs" class="link">
+            <v-list-item prepend-icon="mdi-alert-circle">Logs</v-list-item>
           </router-link>
-          <router-link to="/users">
-            <v-list-item class="navs" prepend-icon="mdi-account">Users</v-list-item>
+          <router-link to="/users" class="link">
+            <v-list-item prepend-icon="mdi-account">Users</v-list-item>
           </router-link>
           
         </v-list>
@@ -28,7 +28,8 @@
           prepend-icon="mdi-theme-dark-light"
           false-icon="mdi-weather-night"
           true-icon="mdi-weather-sunny"
-          class="teste">
+          class="switch"
+          >
         </v-switch>
         
       </v-navigation-drawer>
@@ -45,6 +46,7 @@
           <v-btn size="large" class="pr-1" prepend-icon="mdi-exit-to-app"></v-btn>
         </template>
       </v-app-bar>
+      <router-view></router-view>
     </v-app>
 </template>
 
@@ -53,9 +55,6 @@
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 
-
-// Criando script para modal
-const isDialogOpen = ref(false)
 
 // criando referencia para o drawer
 const drawer = ref(null)
@@ -73,16 +72,19 @@ const toggleTheme = () => {
   }
 };
 
+
+
+
 </script>
 
-<style>
-  .navs {
-    margin-top: 4.6rem;
+<style scoped>
+  .link {
+    text-decoration: none;
+    margin: 14rem;
   }
 
-  .teste {
-    margin-top: 12.5rem;
-    width: 0;
-    height: 0;
+  .switch {
+    margin-top: 21rem;
   }
+
 </style>

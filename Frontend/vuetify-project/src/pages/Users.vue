@@ -1,10 +1,11 @@
 <template>
-    <h1 class="bg-gray-800">Users</h1>
-    <p>usuarios totais</p>
+    <v-main>
+        <v-container>
+            
+        </v-container>
+    </v-main>
 </template>
 
 <script>
-    export default {
-        name: 'Users'
-    }
+    
 </script>
