@@ -39,9 +39,10 @@
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
   
         <v-app-bar-title class="text-h5">MES Storage</v-app-bar-title>
+        
         <template #append>
           <v-avatar>
-            <v-img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"></v-img>
+            <v-img src="https://img.freepik.com/vetores-gratis/circulo-azul-com-usuario-branco_78370-4707.jpg?semt=ais_hybrid&w=740"></v-img>
           </v-avatar>
           <v-btn size="large" class="pr-1" prepend-icon="mdi-exit-to-app"></v-btn>
         </template>
