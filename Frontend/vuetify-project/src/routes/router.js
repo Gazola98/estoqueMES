@@ -15,7 +15,7 @@ const routes = [
             {
                 path: '/devices',
                 name: 'Devices',
-                component: Devices,
+                component: () => import ('@/pages/Devices.vue'),
             },
             {
                 path: '/add',

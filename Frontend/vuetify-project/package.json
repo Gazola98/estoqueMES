@@ -10,6 +10,11 @@
   },
   "dependencies": {
     "@mdi/font": "7.4.47",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0",
+    "pinia": "^3.0.1",
     "read-excel-file": "^5.8.7",
     "roboto-fontface": "*",
     "vue": "^3.4.31",
