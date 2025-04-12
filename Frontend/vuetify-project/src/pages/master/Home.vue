@@ -82,10 +82,10 @@ const toggleTheme = () => {
   .link {
     text-decoration: none;
     margin: 14rem;
+    position: sticky;
   }
 
   .switch {
     margin-top: 21rem;
   }
-
 </style>

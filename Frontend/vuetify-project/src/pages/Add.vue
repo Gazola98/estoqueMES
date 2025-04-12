@@ -16,7 +16,7 @@
                     v-model="form.type"
                      label="Type"
                      variant="outlined"
-                     :items="['MES PC', 'MONITOR']"></v-select>
+                     :items="['MES PC', 'MONITOR', 'OSD', 'PRINTER', 'TV']"></v-select>
                     <v-select
                     v-model="form.brand"
                      label="Brand"
