@@ -16,8 +16,11 @@
         </v-col>
         <v-col cols="12" sm="4">
         <v-select
-        v-model="filters.shop" label="Filter by shop" prepend-icon="mdi-store">
-        </v-select>
+         v-model="filters.shop"
+         :items="shopOptions"
+         label="Filter by shop" 
+         prepend-icon="mdi-store"
+         clearable></v-select>
         </v-col>
         <v-col cols="12" sm="4">
           <v-select
@@ -28,7 +31,6 @@
            clearable></v-select>
         </v-col>
        </v-row>
-
     <!-- Tabela -->
     <v-table class="rounded-lg">
       <thead>
@@ -49,8 +51,9 @@
           <th>Switch Port</th>
           <th>Switch</th>
           <th>Rack</th>
+          <th>Ações</th>
         </tr>
-        <tr v-for="(device, index) in (filteredDevices, filteredDeevices)" :key="index" :class="index % 2 === 0 ? 'linha-par' : 'linha-impar'">
+        <tr v-for="(device, index) in (filteredDevices)" :key="index" :class="index % 2 === 0 ? 'linha-par' : 'linha-impar'">
           <td>{{ device.select }}</td>
           <td>{{ device.type }}</td>
           <td>{{ device.brand }}</td>
@@ -66,9 +69,23 @@
           <td>{{ device.asset }}</td>
           <td>{{ device.switchPort }}</td>
           <td>{{ device.switch }}</td>
-          <td>{{ device.rack }}</td> 
+          <td>{{ device.rack }}</td>
+          <td><button @click="openDialog(index)">🗑️</button></td>
         </tr>
       </thead>
+
+      <!-- Confirm para excluir -->
+      <v-dialog v-model="dialog" max-width="500">
+        <v-card>
+          <v-card-title class="text-h6">Confirmar Exclusão</v-card-title>
+          <v-card-text>Tem certeza que deseja excluir este dispositivo?</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="grey" text @click="dialog = false">Cancelar</v-btn>
+            <v-btn color="red" text @click="confirmRemove">Excluir</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-table>
   </v-container>
  </v-main>
@@ -85,17 +102,31 @@
 
  const search = ref('');
 
- // computed com filtro simples
+ // computed com filtro simples})
  const filteredDevices = computed(() => {
-  if(!search.value) return deviceStore.devices
+  let result = deviceStore.devices
 
-  const term = search.value.toLowerCase()
+  // Filtro por texto (search)
+  if (search.value) {
+    const term = search.value.toLowerCase()
+    result = result.filter(device =>
+      Object.values(device).some(value =>
+        String(value).toLowerCase().includes(term)
+      )
+    )
+  }
 
-  return deviceStore.devices.filter(device => Object.values(device).some(value => String(value).toLowerCase().includes(term)
-   )
- )
- })
+  // Filtros por campo (host, shop, type)
+  result = result.filter(device => {
+    const hostMatch = device.host.toLowerCase().includes(filters.value.host.toLowerCase())
+    const shopMatch = !filters.value.shop || device.shop.toLowerCase() === filters.value.shop.toLowerCase()
+    const typeMatch = !filters.value.type || device.type === filters.value.type
 
+    return hostMatch && shopMatch && typeMatch
+  })
+
+  return result
+})
  onMounted(() => {
   deviceStore.loadFromLocalStorage()
  })
@@ -108,22 +139,36 @@
     type: ''
   })
 
+  // Gerar opções únicas para shop
+  const shopOptions = computed(() => {
+    const shops = deviceStore.devices.map(d => d.shop)
+    return [...new Set(shops)]
+  })
+
  // Gerar opções únicas de tipo
  const typeOptions = computed(() => {
   const types = deviceStore.devices.map(d => d.type)
   return [...new Set(types)]
  })
 
- // Computed com filtros por campo
- const filteredDeevices = computed(() => {
-  return deviceStore.devices.filter(device => {
-    const hostMatch = device.host.toLowerCase().includes(filters.value.host.toLowerCase())
-    const shopMatch = device.shop.toLowerCase().includes(filters.value.shop.toLowerCase())
-    const typeMatch = !filters.value.type || device.type === filters.value.type
 
-    return hostMatch && shopMatch && typeMatch
-  })
-})
+// Controle do dialog
+const dialog = ref(false)
+const deviceIndexToRemove = ref(null)
+
+//Abrir o dialog e guardar o índice
+function openDialog(index) {
+  deviceIndexToRemove.value = index
+  dialog.value = true
+}
+
+function confirmRemove() {
+  if (deviceIndexToRemove.value !== null) {
+    deviceStore.removeDevice(deviceIndexToRemove.value)
+  }
+  dialog.value = false
+  deviceIndexToRemove.value = null
+}
 
 </script>
 
