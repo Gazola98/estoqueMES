@@ -1,6 +1,4 @@
 <template>
-    <v-main>
-        <v-container>
             <v-card
              class="mx-auto"
              max-width="800"
@@ -100,8 +98,6 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
-        </v-container>
-    </v-main>
 </template>
 
 

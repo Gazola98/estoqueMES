@@ -1,5 +1,3 @@
 <template>
-    <v-main>
-        <h2>Esse é o log</h2>
-    </v-main>
+    <h1>Log</h1>
 </template>

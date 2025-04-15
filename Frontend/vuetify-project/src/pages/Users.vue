@@ -1,9 +1,5 @@
 <template>
-    <v-main>
-        <v-container>
-            
-        </v-container>
-    </v-main>
+    <h1>Users</h1>
 </template>
 
 <script>

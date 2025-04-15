@@ -47,14 +47,55 @@
           <v-btn size="large" class="pr-1" prepend-icon="mdi-exit-to-app"></v-btn>
         </template>
       </v-app-bar>
-      <router-view></router-view>
+
+
+      <v-main>
+        <v-container>
+
+          <!-- Conteudo para Home -->
+           <div v-if="route.path === '/'">
+                <v-card class="mb-4 pa-4">
+                <h3 class="text-h6 mb-2">Devices por shop:</h3>
+                <v-chip
+                v-for="(count, shop) in shopCounts"
+                :key="shop"
+                class="ma-1"
+                color="primary"
+                text-color="white"
+                >
+                  {{ shop }}: {{ count }}
+                </v-chip>
+              </v-card>
+
+            <!-- Contagem type -->
+              <v-card class="mb-4 pa-4">
+                <h3 class="text-h6 mb-2">Devices por type:</h3>
+                <v-chip
+                  v-for="(count, type) in typeCounts"
+                  :key="type"
+                  class="ma-1"
+                  color="indigo"
+                  text-color="white"
+                  >
+                  {{ type }}: {{ count }}
+                </v-chip>
+              </v-card>
+           </div>
+
+           <!-- Outras rotas -->
+          <router-view></router-view>
+        </v-container>
+      </v-main>
     </v-app>
 </template>
 
 <script setup>
 
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useTheme } from 'vuetify';
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
 
 
 // criando referencia para o drawer
@@ -73,6 +114,25 @@ const toggleTheme = () => {
   }
 };
 
+// // Total de devices por shop
+// const shopCounts = computed(() => {
+//   const counts = {}
+//   deviceStore.devices.forEach(device => {
+//     const shop = device.shop || 'Desconhecido'
+//     counts[shop] = (counts[shop] || 0) + 1
+//   })
+//   return counts
+//  })
+
+//  // Total de devices por type
+//  const typeCounts = computed(() => {
+//   const counts = {}
+//   deviceStore.devices.forEach(device => {
+//     const type = device.type || 'Desconhecido'
+//     counts[type] = (counts[type] || 0) + 1
+//   })
+//   return counts
+//  })
 
 
 

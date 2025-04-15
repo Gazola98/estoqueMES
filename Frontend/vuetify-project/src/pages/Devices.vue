@@ -1,7 +1,4 @@
 <template>
- <v-main>
-  <v-container>
-
     <!-- Busca -->
      <v-text-field
       v-model="search"
@@ -31,6 +28,7 @@
            clearable></v-select>
         </v-col>
        </v-row>
+
     <!-- Tabela -->
     <v-table class="rounded-lg">
       <thead>
@@ -70,7 +68,7 @@
           <td>{{ device.switchPort }}</td>
           <td>{{ device.switch }}</td>
           <td>{{ device.rack }}</td>
-          <td><button @click="openDialog(index)">🗑️</button></td>
+          <td><v-chip><button @click="openDialog(index)">🗑️</button></v-chip></td>
         </tr>
       </thead>
 
@@ -87,8 +85,6 @@
         </v-card>
       </v-dialog>
     </v-table>
-  </v-container>
- </v-main>
 </template>
   
 
@@ -150,7 +146,6 @@
   const types = deviceStore.devices.map(d => d.type)
   return [...new Set(types)]
  })
-
 
 // Controle do dialog
 const dialog = ref(false)
