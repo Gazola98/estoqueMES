@@ -1,10 +1,24 @@
 <template>
     <!-- Busca -->
-     <v-text-field
-      v-model="search"
-      label="Search"
-      prepend-icon="mdi-magnify"
-      class="mb-4"></v-text-field>
+     <v-row>
+      <v-col cols="12" sm="6">
+        <v-text-field
+       v-model="search"
+       label="Search"
+       prepend-icon="mdi-magnify"
+       class="mb-4"></v-text-field>
+      </v-col>
+      <v-col cols="12" sm="6">
+        <v-select
+         
+         label="Filter CCR Stock"
+         prepend-icon="mdi-package-variant-closed"
+         :items="['Stock']"></v-select>
+      </v-col>
+     </v-row>
+     
+
+      
 
       <!-- Filtros -->
        <v-row class="mb-4" dense>
@@ -16,7 +30,7 @@
          v-model="filters.shop"
          :items="shopOptions"
          label="Filter by shop" 
-         prepend-icon="mdi-store"
+         prepend-icon="mdi-factory"
          clearable></v-select>
         </v-col>
         <v-col cols="12" sm="4">
