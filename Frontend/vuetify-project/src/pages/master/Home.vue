@@ -53,8 +53,8 @@
         <v-container>
 
           <!-- Conteudo para Home -->
-           <div v-if="route.path === '/'">
-                <v-card class="mb-4 pa-4">
+           <div class="d-flex ml-12" v-if="route.path === '/'">
+                <v-card class="mb-4 mr-6 pa-4">
                 <h3 class="text-h6 mb-2">Devices por shop:</h3>
                 <v-chip
                 v-for="(count, shop) in shopCounts"
@@ -68,7 +68,7 @@
               </v-card>
 
             <!-- Contagem type -->
-              <v-card class="mb-4 pa-4">
+              <v-card class="mb-4 ml-6 pa-4">
                 <h3 class="text-h6 mb-2">Devices por type:</h3>
                 <v-chip
                   v-for="(count, type) in typeCounts"
