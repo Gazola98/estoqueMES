@@ -13,7 +13,8 @@
          
          label="Filter CCR Stock"
          prepend-icon="mdi-package-variant-closed"
-         :items="['Stock']"></v-select>
+         :items="['Stock']"
+         clearable></v-select>
       </v-col>
      </v-row>
      
@@ -184,6 +185,10 @@ function confirmRemove() {
 
 
 <style scoped>
+  th {
+    font-size: 16px;
+  }
+
   td {
     border-bottom: 0.01px solid rgba(128, 128, 128, 0.3);
   }

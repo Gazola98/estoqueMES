@@ -6,6 +6,10 @@ export const useDeviceStore = defineStore('device', {
    }),
    actions: {
       addDevice(device) {
+         if(!device.shop || !device.type) {
+            console.warn("Device precisa de 'shop'e 'type'.")
+            return;
+         }
          this.devices.push(device)
          this.saveToLocalStorage()
       },

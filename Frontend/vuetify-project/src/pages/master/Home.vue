@@ -51,38 +51,31 @@
 
       <v-main>
         <v-container>
-
-          <!-- Conteudo para Home -->
-           <div class="d-flex ml-12" v-if="route.path === '/'">
-                <v-card class="mb-4 mr-6 pa-4">
-                <h3 class="text-h6 mb-2">Devices por shop:</h3>
-                <v-chip
-                v-for="(count, shop) in shopCounts"
-                :key="shop"
-                class="ma-1"
-                color="primary"
-                text-color="white"
-                >
-                  {{ shop }}: {{ count }}
-                </v-chip>
-              </v-card>
-
-            <!-- Contagem type -->
-              <v-card class="mb-4 ml-6 pa-4">
-                <h3 class="text-h6 mb-2">Devices por type:</h3>
-                <v-chip
-                  v-for="(count, type) in typeCounts"
-                  :key="type"
-                  class="ma-1"
-                  color="indigo"
-                  text-color="white"
-                  >
-                  {{ type }}: {{ count }}
-                </v-chip>
-              </v-card>
-           </div>
-
-           <!-- Outras rotas -->
+            <!-- Conteudo para Home -->
+            <div class="d-flex ml-6 mr-3 rounded-lg" v-if="route.path === '/'">
+              <v-row>
+                <v-col
+                 v-for="(section, index) in sections"
+                 :key="index"
+                 cols="4"
+                 >
+                  <v-card  class="mb-4 ml-3 pa-5" height="465" width="500">
+                    <h2 class="d-flex justify-center">{{ section.name }}</h2>
+                    <v-container class="pa-0">
+                      <div
+                        v-for="(item, idx) in labels"
+                        :key="idx"
+                        class="d-flex justify-space-between align-center border-row"
+                        >
+                        <h4 class="ma-0">{{ item }}:</h4>
+                        <p class="ma-0">{{ section.data[item] ?? 0 }}</p>
+                      </div>
+                    </v-container> 
+                  </v-card>
+                </v-col>
+              </v-row>
+            </div>
+        <!-- Outras rotas -->
           <router-view></router-view>
         </v-container>
       </v-main>
@@ -94,9 +87,11 @@
 import { computed, ref } from 'vue';
 import { useTheme } from 'vuetify';
 import { useRoute } from 'vue-router';
+import { useDeviceStore } from '@/stores/DeviceStore';
+
 
 const route = useRoute()
-
+const deviceStore = useDeviceStore()
 
 // criando referencia para o drawer
 const drawer = ref(null)
@@ -114,38 +109,67 @@ const toggleTheme = () => {
   }
 };
 
-// // Total de devices por shop
-// const shopCounts = computed(() => {
-//   const counts = {}
-//   deviceStore.devices.forEach(device => {
-//     const shop = device.shop || 'Desconhecido'
-//     counts[shop] = (counts[shop] || 0) + 1
-//   })
-//   return counts
-//  })
+const labels = [
+  'MES PC',
+  'MES PC Monitors',
+  'OSD PC',
+  'OSD Monitors',
+  'Industrial Keyboards',
+  'TDCS PC',
+  'TDCS Monitors',
+  'KIOSK PC',
+  'KIOSK Monitors',
+  'Printers',
+  'GPTIS',
+  'GPTIS Monitors'
+]
 
-//  // Total de devices por type
-//  const typeCounts = computed(() => {
-//   const counts = {}
-//   deviceStore.devices.forEach(device => {
-//     const type = device.type || 'Desconhecido'
-//     counts[type] = (counts[type] || 0) + 1
-//   })
-//   return counts
-//  })
+// Dados por seção
+const sections = computed(() => {
+  // Pega todos os shops únicos
+  const shops = [...new Set(deviceStore.devices.map(d => d.shop))]
 
+  // Garante que aparece na ordem desejada
+  const order = ['Assembly', 'Body', 'Engine Plant', 'Paint', 'Press/Stamp']
+  
+  // Gera os dados por seção
+  const sectionData = order.map(shop => {
+    const data = {}
+    labels.forEach(label => {
+      data[label] = deviceStore.devices.filter(d => d.shop === shop && d.type === label).length
+    })
+    return { name: shop, data }
+  })
 
+  // Adiciona a seção "Total"
+  const totalData = {}
+  labels.forEach(label => {
+    totalData[label] = deviceStore.devices.filter(d => d.type === label).length
+  })
 
+  sectionData.push({ name: 'Total', data: totalData })
+
+  return sectionData
+})
 </script>
 
 <style scoped>
   .link {
-    text-decoration: none;
-    margin: 14rem;
-    position: sticky;
-  }
+  text-decoration: none;
+  margin: 14rem;
+  position: sticky;
+}
 
-  .switch {
-    margin-top: 21rem;
-  }
+.switch {
+  margin-top: 21rem;
+}
+
+.border-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 4px 0;
+}
+
+p {
+  font-weight: bold;
+}
 </style>
